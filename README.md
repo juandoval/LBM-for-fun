@@ -15,5 +15,5 @@ I plan to understand what goes on under the hood for a Lattice Boltzmann Method 
 
 I recently had a Class called Advanced CFD where one of the topics was LBM, taught by [Alessandro De Rosis](https://scholar.google.com/citations?user=xi0xYuUAAAAJ&hl=it)
 But the reality is that, if I do not put into practice his shared knowledge, I will not remember.
-So! Here we go! I have brought my lecture to refresh concepts and equation, but I can say for sure I will get my head stuck in google finding answers.
+So, Here we go! I have brought my lecture to refresh concepts and equation, but I can say for sure I will get my head stuck in google finding answers.
 In the BIG 2026 seems pointless, with the amazing code Claude is capable of producing, specially for small projects like this, but obviously this defeat the purpose :p 
