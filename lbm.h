@@ -7,7 +7,7 @@
 const int    e_x[9]    = { 0,  1,  0, -1,  0,  1, -1, -1,  1 };
 const int    e_y[9]    = { 0,  0,  1,  0, -1,  1,  1, -1, -1 };
 
-// D2Q9 weights (must sum to 1)
+// D2Q9 weights (Sum = 1)
 const double weight[9] = { 4.0/9, 1.0/9, 1.0/9, 1.0/9, 1.0/9, 1.0/36, 1.0/36, 1.0/36, 1.0/36 };
 
 // c_s^2 = 1/3 for D2Q9
