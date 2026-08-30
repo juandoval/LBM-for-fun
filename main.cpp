@@ -6,35 +6,29 @@
 
 int main() {
     // f[x][y][i]: distribution function at node (x,y) for direction i
-
-    // (Grid) NX columns and NY rows, i (9) buckets each node
-
-    // static keeps it off the stack, NX*NY*9 doubles is too large for stack memory
+    // static keeps it off the stack — NX*NY*9 doubles is too large for stack memory
     static double f[NX][NY][9];
+    static bool solid[NX][NY];
 
-    // seed every node to equilibrium (w/ ρ=1, u=0, v=0)
-
-    // initialize x as 0, while x < NX is true, increment x each loop (same for NY)
-    // fluid at rest
+    // Define cylinder: centre at (NX/4, NY/2), radius NY/4
     for (int x = 0; x < NX; ++x)
         for (int y = 0; y < NY; ++y)
+            solid[x][y] = (x - NX/4)*(x - NX/4) + (y - NY/2)*(y - NY/2) < (NY/4)*(NY/4);
 
-            // compute equilibrium distribution for given x and y, 
-
-            // and distribution function values:             
-            // f[x][y][i] how much fluid mass is moving in direction i at node (x,y) (weight/amount)
-            // f[x][y][1] how much is headed to this node from the left
-
-            // with initial conditions; rho = 1, u = 0 and v = 0
-
-            equilibrium(f[x][y], 1.0, 0.0, 0.0);
-
-            // equilibrium distribution gives 9 values at each node (x,y)
-
+    // Seed every node to equilibrium with slight rightward flow to help startup
+    for (int x = 0; x < NX; ++x)
+        for (int y = 0; y < NY; ++y)
+            equilibrium(f[x][y], 1.0, 0.1, 0.0);
 
     for (int t = 0; t < T; ++t) {
         stream(f);
-        collide(f, TAU);
+        apply_bounceback(f, solid);
+        apply_inlet(f, 0.1);
+        apply_outlet(f, 0.1);
+        collide(f, TAU, solid);
+
+        if (t % 100 == 0)
+            write_csv(f, t);
     }
 
     // Print macroscopic state at the centre node as a sanity check

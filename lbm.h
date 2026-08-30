@@ -14,6 +14,7 @@ const double weight[9] = { 4.0/9, 1.0/9, 1.0/9, 1.0/9, 1.0/9, 1.0/36, 1.0/36, 1.
 const double cs2 = 1.0 / 3.0;
 
 void equilibrium(double f[9], double density, double velocity_x, double velocity_y);
-void collide(double f[NX][NY][9], double tau);
+void macroscopic(double f[9], double &density, double &velocity_x, double &velocity_y);
+void collide(double f[NX][NY][9], double tau, bool solid[NX][NY]);
 void stream(double f[NX][NY][9]);
 void macroscopic(double f[9], double &density, double &velocity_x, double &velocity_y);

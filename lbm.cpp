@@ -78,11 +78,12 @@ void equilibrium(double f[9], double density, double velocity_x, double velocity
     }
 }
 
-// BGK collision at every node: relaxes f toward f_eq at rate ω = 1/τ
-void collide(double f[NX][NY][9], double tau) {
+// BGK collision at every fluid node: relaxes f toward f_eq at rate ω = 1/τ
+void collide(double f[NX][NY][9], double tau, bool solid[NX][NY]) {
     double omega = 1.0 / tau;
     for (int x = 0; x < NX; ++x) {
         for (int y = 0; y < NY; ++y) {
+            if (solid[x][y]) continue; // skip solid nodes
             double density, velocity_x, velocity_y;
             macroscopic(f[x][y], density, velocity_x, velocity_y);
             double f_eq[9];
