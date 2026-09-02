@@ -22,7 +22,7 @@ int main() {
 
     for (int t = 0; t < T; ++t) {
         stream(f);
-        apply_bounceback(f, solid);
+        apply_bounceback(f, solid, U_BOTTOM, U_TOP);
         apply_inlet(f, 0.1);
         apply_outlet(f, 0.1);
         collide(f, TAU, solid);

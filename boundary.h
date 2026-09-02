@@ -9,4 +9,4 @@ void apply_inlet(double f[NX][NY][9], double velocity_x);
 void apply_outlet(double f[NX][NY][9], double velocity_x);
 
 // Bounce-back: top/bottom walls + solid nodes from mask
-void apply_bounceback(double f[NX][NY][9], bool solid[NX][NY]);
+void apply_bounceback(double f[NX][NY][9], bool solid[NX][NY], double u_bottom, double u_top);
