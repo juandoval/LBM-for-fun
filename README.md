@@ -55,6 +55,18 @@ f_i(r + c · e_i Δt, t + Δt) = f_i(r, t) + Δt/τ [f_i^eq(r, t) - f_i(r, t)]
 
 More cool info can be found here [SimScale](https://www.simscale.com/docs/simwiki/cfd-computational-fluid-dynamics/lattice-boltzmann-method-lbm/) or [Alessandro De Rosis Slides](Alessandro_De_Rosis).
 
+## Validation
+
+Before trusting any results, the solver needs to pass classical benchmarks with known analytical solutions. First one on the list is Poiseuille flow — body-force driven flow in a channel, parabolic velocity profile, exact answer known. If the parabola matches across multiple viscosities, the core physics is sound.
+
+| Case | τ | LBM u_max | Analytical u_max | Error |
+|---|---|---|---|---|
+| Poiseuille | 0.6 | 0.005623 | 0.005704 | 1.42% |
+| Poiseuille | 0.7 | 0.002852 | 0.002852 | 0.00% |
+| Poiseuille | 0.8 | 0.001903 | 0.001901 | 0.07% |
+
+Viscosity relation ν = c_s²(τ − ½) confirmed. Next: Couette flow.
+
 ## References
 1. https://link.springer.com/referenceworkentry/10.1007/978-3-319-08234-9_107-1
 2. https://www.annualreviews.org/doi/10.1146/annurev.fluid.30.1.329
