@@ -15,6 +15,7 @@ const double cs2 = 1.0 / 3.0;
 
 void equilibrium(double f[9], double density, double velocity_x, double velocity_y);
 void macroscopic(double f[9], double &density, double &velocity_x, double &velocity_y);
-void collide(double f[NX][NY][9], double tau, bool solid[NX][NY]);
+// body_force_x/y: lattice acceleration (0 = off). Simple forcing: shifts velocity before f_eq.
+void collide(double f[NX][NY][9], double tau, bool solid[NX][NY],
+             double body_force_x = 0.0, double body_force_y = 0.0);
 void stream(double f[NX][NY][9]);
-void macroscopic(double f[9], double &density, double &velocity_x, double &velocity_y);
